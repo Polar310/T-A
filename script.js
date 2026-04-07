@@ -206,6 +206,16 @@ let swipeCurrent = 0;
 let envelopeOpened = false;
 let isEnvelopeInteracting = false;
 let letterExpanded = false;
+let movedDuringEnvelopeSwipe = false;
+
+function openEnvelope() {
+  if (envelopeOpened) return;
+  envelopeOpened = true;
+  envelope.classList.remove("opening");
+  envelope.classList.add("open");
+  envelope.style.setProperty("--open-progress", "1");
+  swipeProgress.textContent = "Opened with love 💚";
+}
 
 function onEnvelopeSwipeMove(clientX) {
   if (envelopeOpened) return;
@@ -214,15 +224,13 @@ function onEnvelopeSwipeMove(clientX) {
   const width = envelopeStage.clientWidth || 1;
   const progress = Math.min(1, delta / (width * 0.55));
   swipeCurrent = progress;
+  if (delta > 10) movedDuringEnvelopeSwipe = true;
   envelope.style.setProperty("--open-progress", progress.toFixed(3));
   envelope.classList.add("opening");
   swipeProgress.textContent = `Swipe progress: ${Math.round(progress * 100)}%`;
 
   if (progress >= 1) {
-    envelopeOpened = true;
-    envelope.classList.remove("opening");
-    envelope.classList.add("open");
-    swipeProgress.textContent = "Opened with love 💚";
+    openEnvelope();
   }
 }
 
@@ -230,6 +238,7 @@ envelopeStage.addEventListener("pointerdown", (e) => {
   if (envelopeOpened || letterExpanded) return;
   swipeStartX = e.clientX;
   swipeCurrent = 0;
+  movedDuringEnvelopeSwipe = false;
   isEnvelopeInteracting = true;
   envelope.classList.add("opening");
   envelopeStage.setPointerCapture(e.pointerId);
@@ -239,6 +248,10 @@ envelopeStage.addEventListener("pointermove", (e) => onEnvelopeSwipeMove(e.clien
 
 envelopeStage.addEventListener("pointerup", () => {
   isEnvelopeInteracting = false;
+  if (!envelopeOpened && !movedDuringEnvelopeSwipe) {
+    openEnvelope();
+    return;
+  }
   if (!envelopeOpened && swipeCurrent < 1) {
     swipeProgress.textContent = "Swipe progress: 0%";
     envelope.style.setProperty("--open-progress", "0");
