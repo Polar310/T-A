@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Love Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient-bg" aria-hidden="true">
+      <span class="glow glow-1"></span>
+      <span class="glow glow-2"></span>
+      <span class="glow glow-3"></span>
+      <div id="floating-love-layer"></div>
+    </div>
+    <div id="emoji-rain-layer" aria-hidden="true"></div>
+    <main id="app" class="app" aria-live="polite">
+      <section class="screen screen-1">
+        <div class="screen-card proposal-card">
+          <h1>Do you love me and take me to be with you every day?</h1>
+          <p>Because my happiest place is with you.</p>
+          <div class="action-row">
+            <button id="yes-btn" class="btn btn-yes" type="button">Yes</button>
+            <button id="no-btn" class="btn btn-no" type="button">No</button>
+          </div>
+          <p class="hint">Choose wisely, my love.</p>
+        </div>
+      </section>
+
+      <section class="screen screen-2">
+        <div class="screen-card gallery-card">
+          <h2>Our lovely memories</h2>
+          <p>and many more to come!!!</p>
+          <div class="upload-wrap">
+            <label for="photo-input" class="upload-label">+ Add photos to our board</label>
+            <input id="photo-input" type="file" accept="image/*" multiple />
+          </div>
+          <p class="upload-hint">Upload one or many photos - each new upload appears on the swipe board.</p>
+          <div class="carousel-wrap">
+            <button
+              class="carousel-btn prev"
+              id="prev-slide"
+              type="button"
+              aria-label="Previous picture"
+            >
+              &#10094;
+            </button>
+            <div class="carousel" id="carousel">
+              <div class="carousel-track" id="carousel-track"></div>
+            </div>
+            <button
+              class="carousel-btn next"
+              id="next-slide"
+              type="button"
+              aria-label="Next picture"
+            >
+              &#10095;
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen screen-3">
+        <div class="screen-card letter-card">
+          <h2>For my love</h2>
+          <p class="letter-guide">Swipe the envelope to open our letter.</p>
+          <div class="envelope-stage" id="envelope-stage">
+            <div class="envelope" id="envelope">
+              <div class="envelope-top"></div>
+              <div class="envelope-body"></div>
+              <div class="letter-sheet" id="letter-sheet">
+                <button
+                  id="letter-close-btn"
+                  class="letter-close-btn"
+                  type="button"
+                  aria-label="Close expanded letter"
+                >
+                  ×
+                </button>
+                <div class="letter-fold fold-top"></div>
+                <div class="letter-fold fold-middle">
+                  <article class="letter-content">
+                    <h3>My Dearly Beloved Tejal,</h3>
+                    <p>
+                      Across the skies and starry nights, my heart still walks to <br>
+                      you like an old familiar road.<br>
+                    </p>
+                    <p>
+                      Even through the long miles, I can feel your presence and love in my heart.  <br>
+                    </p>
+                    <p>
+                      I miss your hands, your voice, your quiet smile, and all<br>
+                      the tiny moments we will hold again very soon.<br>
+                    </p>
+                    <p>
+                      Until then, I'll keep yearning for your presence and love in my heart.<br> 
+                      As nothing more can make me happier than your presence and love. <br>
+                      I shall always love you forever and more. <br>
+                      Everyday I come closer to having you back in my arms. <br>
+                    </p>
+                    <p class="signature">
+                      Truly and forever,<br>
+                      your beloved,<br>
+                      Agastya
+                    </p>
+                  </article>
+                </div>
+                <div class="letter-fold fold-bottom"></div>
+              </div>
+            </div>
+            <div class="swipe-meter" id="swipe-meter">
+              <span id="swipe-progress">Swipe progress: 0%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="pager">
+      <button class="pager-dot active" data-screen="0" aria-label="Screen 1"></button>
+      <button class="pager-dot" data-screen="1" aria-label="Screen 2"></button>
+      <button class="pager-dot" data-screen="2" aria-label="Screen 3"></button>
+    </nav>
+
+    <script src="script.js"></script>
+  </body>
+</html>
